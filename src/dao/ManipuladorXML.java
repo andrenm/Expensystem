@@ -1,14 +1,11 @@
 package dao;
 
 import domain.*;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import com.thoughtworks.xstream.XStream;
-import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.io.BufferedReader;
+import com.thoughtworks.xstream.XStream;
 
 /**
  *
@@ -16,55 +13,56 @@ import java.util.ArrayList;
  */
 public class ManipuladorXML {   
     
-    public static void main(String[] args) {
+    // diretorio para busca dos arquivos XML
+    public static String PATH_XML = "C:\\Users\\benjamin.psjunior\\Documents\\NetBeansProjects\\trunk\\src\\dao\\";    
+    
+    public Usuario searchLogin(String usuario, char[] senha) {       
         
-      /*XStream xstream = new XStream();      
+        Usuario userReturn = null;        
+        ArrayList<Usuario> userList = null;
         
-      try {
-          
-        // carrega o arquivo xml
-        File f = new File("C:\\Users\\benjamin.psjunior\\Documents\\NetBeansProjects\\Expensystem\\src\\dao\\teste.xml");
-        FileInputStream input = new FileInputStream(f);
+        System.out.print(userList);
+        //get users list
+        userList = returnXML("teste.xml");
         
-        xstream.alias("usuario", Usuario.class);        
-        //xstream.alias("lancamento", Lancamento.class);        
-        //xstream.alias("categoriaLancamento", CategoriaLancamento.class);
-        // cria um objeto de Pessoa, contendo os dados lidos no xml
-        Usuario u = (Usuario) xstream.fromXML(input);        
-        // imprime os dados
-        //System.out.println(u);
-        System.out.println("Nome: " + u.getNome());
-        //System.out.println("Email: " + u.getEmail());
+        System.out.print(userList);
         
-      } catch (FileNotFoundException e) {
-        e.printStackTrace();
-      } catch (Exception e){
-        e.printStackTrace();
-      }*/
-       // System.out.println(this.lerXML());
-                
+        if (userList == null)
+            return null;
+        
+        for (Usuario user : userList) {                 
+            if (user.getEmail().equals(usuario) && new String(user.getSenha()).equals(senha)) {                     
+                userReturn = user;                
+                break;
+            }
+        }	
+        
+        return userReturn;
     }
     
-    public ArrayList lerXML() {
+    public ArrayList returnXML(String arquivo) {
         
-        try {
-            
-            XStream xStream = new XStream();
-            //xStream.alias("enderecos", ArrayList.class);
-            //xStream.processAnnotations(Endereco.class);
- 
-            BufferedReader input = new BufferedReader(new FileReader("C:\\Users\\benjamin.psjunior\\Documents\\NetBeansProjects\\Expensystem\\src\\dao\\teste.xml"));
-            
-            ArrayList dados = (ArrayList) xStream.fromXML(input);
-            input.close();
-            
-            return dados;
- 
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
+        String alias = "usuario";
+    	ArrayList objectList = null;
         
-        return null;
+        //init XStrem
+    	XStream xtream = new XStream();    	
+    	xtream.alias(alias, ArrayList.class);  		
+    	
+    	try {
+            
+            BufferedReader ler = new BufferedReader(new FileReader(PATH_XML + arquivo));             
+            objectList = (ArrayList<Usuario>) xtream.fromXML(ler);
+            System.out.println("KKK>");
+            //System.out.println(objectList);
+            //free memory
+    	    ler.close();
+    				    		
+    	} catch(IOException e) {            
+            System.out.println("O arquivo nao foi localizado.");
+    	}
+        System.out.println(objectList);
+    	return objectList;
     }
 }
 

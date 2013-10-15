@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<usuario>
-    <id>1</id>
-    <email>benjamin.pereira@outlook.com.br</email>
-    <nome>Benjamin</nome>
-    <senha>mudar@123</senha>
-</usuario>
-<usuario>
-    <id>2</id>
-    <email>andremailho@gmail.com</email>
-    <nome>Andre</nome>
-    <senha>mudar@123</senha>
-</usuario>
-
+<list>
+    <usuario>
+        <id>1</id>
+        <email>ben</email>
+        <nome>Benjamin</nome>
+        <senha>123</senha>
+    </usuario>
+</list>

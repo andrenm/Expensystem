@@ -14,6 +14,7 @@ public class CtrlLogin {
         
     private LoginGUI windowLogin;
     //private Modelo modelo;
+    private Usuario login;
     
     public CtrlLogin() {
         
@@ -25,33 +26,24 @@ public class CtrlLogin {
     
     public String ValidaLogin(Usuario user)
     {   
-        try
-        {
-            //Teste pra ver se acessa o xml
-           // ManipuladorXML xml = new ManipuladorXML();
-           // user = xml.BuscaLogin();
+        try {
             
-            //valida usuario e senha por hardcoded
-            if(user.getNome().equals("andre") && new String(user.getSenha()).equals("123"))
-            {
+            ManipuladorXML xml = new ManipuladorXML();
+            System.out.println(user.getEmail());
+            System.out.println(user.getSenha());
+            login = xml.searchLogin(user.getEmail(), user.getSenha());
+            
+            System.out.println("AQUIII:");
+            System.out.println(login);
+            
+            if(login != null) {
                 return "LOGADO";
-            }
-            else
-            {
+            } else {
                 return "INCORRETO";
             }
-        }
-        catch(Exception ex)
-        {
+            
+        } catch(Exception ex) {
             throw ex;
         }
     }
-    
-    /*public void adicionaCidade(String estado, String cidade) {
-        
-        modelo.addCidade(estado, new Cidade(cidade));  
-         janela.updateCidades(estado);
-        janela2.updateCidades(estado);
-        janela3.updateCidades(estado);
-    }*/
 }

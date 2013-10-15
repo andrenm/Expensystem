@@ -148,7 +148,7 @@ public class LoginGUI extends JFrame {
            CtrlLogin login = new CtrlLogin();
            try
            {
-                String result = login.ValidaLogin(new Usuario(txtUser.getText(),txtPassword.getPassword()));
+                String result = login.ValidaLogin(new Usuario(txtUser.getText(), txtPassword.getPassword()));
 
                 if(result.equals("INCORRETO"))
                 {

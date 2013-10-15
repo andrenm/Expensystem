@@ -16,11 +16,11 @@ public class Usuario {
     private String email;
     private String nome;
     private char[] senha;
-    private List<Lancamento> lancamentos;
+    //private List<Lancamento> lancamentos;
     
-    public Usuario(String nome,char[] senha)
+    public Usuario(String email, char[] senha)
     {
-        this.nome = nome;
+        this.email = email;
         this.senha = senha;
     }
     
@@ -56,7 +56,7 @@ public class Usuario {
         this.id = id;
     }
     
-    public List<Lancamento> getLancamentos() {
-        return lancamentos;
-    }
+   // public List<Lancamento> getLancamentos() {
+       //return lancamentos;
+   // }
 }
