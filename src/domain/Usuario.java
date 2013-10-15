@@ -4,20 +4,19 @@
  */
 package domain;
 
+import java.util.List;
+
 /**
  *
  * @author benjamin.psjunior
  */
 public class Usuario {
     
+    private int id;
     private String email;
     private String nome;
     private char[] senha;
-
-    
-    public Usuario()
-    {
-    }
+    private List<Lancamento> lancamentos;
     
     public Usuario(String nome,char[] senha)
     {
@@ -47,5 +46,17 @@ public class Usuario {
 
     public void setSenha(char[] senha) {
         this.senha = senha;
-    }    
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
+    public List<Lancamento> getLancamentos() {
+        return lancamentos;
+    }
 }
