@@ -2,7 +2,7 @@
 package gui;
 
 //vendor's packages
-import controller.LoginController;
+import controller.CtrlLogin;
 import domain.Usuario;
         
 import javax.swing.JFrame;
@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
  */
 public class LoginGUI extends JFrame {    
 
-    private LoginController loginController;
+    private CtrlLogin loginController;
     
     /**
      * Creates new form JFramePrincipal
@@ -25,7 +25,7 @@ public class LoginGUI extends JFrame {
 
     }
     
-    public LoginGUI(LoginController control) {
+    public LoginGUI(CtrlLogin control) {
         
         initComponents();
         this.loginController = control;
@@ -145,7 +145,7 @@ public class LoginGUI extends JFrame {
         }
         else
         {
-           LoginController login = new LoginController();
+           CtrlLogin login = new CtrlLogin();
            try
            {
                 String result = login.ValidaLogin(new Usuario(txtUser.getText(),txtPassword.getPassword()));

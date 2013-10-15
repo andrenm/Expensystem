@@ -6,7 +6,7 @@
 
 package expensys;
 
-import controller.LoginController;
+import controller.CtrlLogin;
 
 /**
  *
@@ -19,6 +19,6 @@ public class Expensys {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        LoginController c = new LoginController();
+        CtrlLogin c = new CtrlLogin();
     }
 }

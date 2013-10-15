@@ -4,7 +4,7 @@
  */
 package gui;
 
-import domain.GerenciaGastos;
+import controller.CtrlGastos;
 import domain.Lancamento;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -36,31 +36,34 @@ public class MainGUI extends javax.swing.JFrame {
 
     private void ListaUltimosLancamentos()
     {
-        GerenciaGastos gerGastos = new GerenciaGastos();
+        CtrlGastos gerGastos = new CtrlGastos();
         
-        String[] columns = {"Descrição","Valor", "Categoria", "Data"};
+        String[] columns = {"Descrição","Valor", "Categoria","Tipo",  "Data"};
         DefaultTableModel model = new DefaultTableModel(columns, 0);
+
         
         ArrayList<Lancamento> List = gerGastos.listaLancamentos();
 
         for(Lancamento item : List)
         {
-            Object[] obj  = new Object[4];
+            Object[] obj  = new Object[5];
 
             obj[0] = item.getDescricao();
             obj[1] = "R$ " + item.getValor();
-            obj[2] = item.getNome();            
-            obj[3] = item.getDataInclusao();
+            obj[2] = item.getNome();     
+            obj[3] = (item.getTipo() == 0 ? "Avulso" : "Fixo"); 
+            obj[4] = item.getDataInclusao();
             
             model.addRow(obj);
         }
         
        jTable_ultimosLancamentos.setModel(model);
+       
     }
     
     private void ConsultaCreditoTotal()
     {
-       GerenciaGastos gerGastos = new GerenciaGastos();
+       CtrlGastos gerGastos = new CtrlGastos();
 
         ValorCredito =  gerGastos.listaCreditos();
         lblValorCredito.setText("R$ " + String.valueOf(ValorCredito));
@@ -68,7 +71,7 @@ public class MainGUI extends javax.swing.JFrame {
 
     private void ConsultaDebitoTotal()
     {
-        GerenciaGastos gerGastos = new GerenciaGastos();
+        CtrlGastos gerGastos = new CtrlGastos();
 
         ValorDebito =  gerGastos.listaDebitos();
         lblValorDebito.setText("R$ " + String.valueOf(ValorDebito));
@@ -95,7 +98,6 @@ public class MainGUI extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
         lblValorTotal = new javax.swing.JLabel();
         lblTituloTotal = new javax.swing.JLabel();
         lblValorDebito = new javax.swing.JLabel();
@@ -135,9 +137,6 @@ public class MainGUI extends javax.swing.JFrame {
 
         jButton2.setText("Editar");
         jButton2.setName("btnEditar"); // NOI18N
-
-        jButton3.setText("Novo lançamento");
-        jButton3.setName("btnNovoLancamento"); // NOI18N
 
         lblValorTotal.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblValorTotal.setName("lblValorTotal"); // NOI18N
@@ -179,7 +178,7 @@ public class MainGUI extends javax.swing.JFrame {
 
         jMenu5.setText("Lançamentos");
 
-        jMenuItem1.setText("Cadastrar");
+        jMenuItem1.setText("Cadastrar novo lançamento");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem1ActionPerformed(evt);
@@ -187,7 +186,7 @@ public class MainGUI extends javax.swing.JFrame {
         });
         jMenu5.add(jMenuItem1);
 
-        jMenuItem2.setText("Consultar");
+        jMenuItem2.setText("Consultar lançamentos");
         jMenu5.add(jMenuItem2);
 
         jMenuBar2.add(jMenu5);
@@ -209,8 +208,6 @@ public class MainGUI extends javax.swing.JFrame {
                         .addComponent(jButton1)
                         .addGap(8, 8, 8)
                         .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -266,8 +263,7 @@ public class MainGUI extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(jButton2))
                 .addGap(0, 18, Short.MAX_VALUE))
         );
 
@@ -275,7 +271,8 @@ public class MainGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // TODO add your handling code here:
+        NovoLancamento nvLanca = new NovoLancamento();
+        nvLanca.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -331,7 +328,6 @@ public class MainGUI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;

@@ -10,12 +10,12 @@ import dao.ManipuladorXML;
  *
  * @author benjamin.psjunior
  */
-public class LoginController {   
+public class CtrlLogin {   
         
     private LoginGUI windowLogin;
     //private Modelo modelo;
     
-    public LoginController() {
+    public CtrlLogin() {
         
         windowLogin = new LoginGUI(this);
         windowLogin.setVisible(true);
