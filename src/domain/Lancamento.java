@@ -5,8 +5,6 @@
 package domain;
 
 import java.text.DateFormat;
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -68,13 +66,14 @@ public class Lancamento extends CategoriaLancamento{
     {
     }
     
-    public Lancamento(String descricao,double valor, String nomeCategoria)
+    public Lancamento(String descricao,double valor, String categoria, int tipo)
     {
         Date d = new Date();
                 
         this.descricao = descricao;
         this.valor = valor;
-        setNome(nomeCategoria);
+        setNome(categoria);
+        this.tipo = tipo;
         
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         this.DataInclusao =  df.format(d).toString();
