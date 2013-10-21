@@ -1,26 +1,26 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<usuario>
-    <email>benjamin.pereira@outlook.com.br</email>
-    <nome>Benjamin</nome>
-    <senha>mudar@123</senha>
-    <lancamento>
-        <descricao>gasto com comida no intervalo</descricao>
-        <valor>15.00</valor>
-        <status>1</status>
-        <tipo>1</tipo>
-        <categoriaLancamento>
-            <nome>comida</nome>
-            <nome>senac</nome>
-            <nome>intervalo</nome>
-        </categoriaLancamento>
-    </lancamento>
-    <lancamento>
-        <descricao>venda de notebook</descricao>
-        <valor>680.00</valor>
+<list>
+  <usuario>
+    <id>1</id>
+    <email>ben</email>
+    <senha>123</senha>
+    <lancamentos>
+      <lancamento>
+        <descricao>mercado do mes</descricao>
+        <valor>250.96</valor>
         <status>1</status>
         <tipo>2</tipo>
-        <categoriaLancamento>
-            <nome>eletronicos</nome>
-        </categoriaLancamento>
-    </lancamento>
-</usuario>
+        <categorias>
+          <categoriaLancamento>
+            <nome>cartao</nome>
+          </categoriaLancamento>
+          <categoriaLancamento>
+            <nome>divida</nome>
+          </categoriaLancamento>
+          <categoriaLancamento>
+            <nome>compras</nome>
+          </categoriaLancamento>
+        </categorias>
+      </lancamento>
+    </lancamentos>
+  </usuario>
+</list>

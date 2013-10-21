@@ -4,24 +4,23 @@
  */
 package domain;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author benjamin.psjunior
  */
 public class Usuario {
     
+    private int id;
     private String email;
     private String nome;
-    private char[] senha;
-
+    private char[] senha;    
+    private ArrayList<Lancamento> lancamentos = new ArrayList<Lancamento>();
     
-    public Usuario()
+    public Usuario(String email, char[] senha)
     {
-    }
-    
-    public Usuario(String nome,char[] senha)
-    {
-        this.nome = nome;
+        this.email = email;
         this.senha = senha;
     }
     
@@ -47,5 +46,21 @@ public class Usuario {
 
     public void setSenha(char[] senha) {
         this.senha = senha;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
+    public ArrayList<Lancamento> getLancamentos() {
+        return this.lancamentos;
     }    
+
+    public void addLancamento(Lancamento lancamento) {
+        this.lancamentos.add(lancamento);
+    }
 }

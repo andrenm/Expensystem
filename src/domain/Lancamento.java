@@ -1,13 +1,9 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package domain;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 /**
  *
@@ -20,11 +16,12 @@ public class Lancamento extends CategoriaLancamento{
     private int status;
     private int tipo;
     private String DataInclusao;
-    private List<CategoriaLancamento> categorias;
+    private ArrayList<CategoriaLancamento> categorias = new ArrayList<CategoriaLancamento>();
 
     public String getDescricao() {
         return descricao;
-    }
+    }    
+    
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
@@ -62,9 +59,7 @@ public class Lancamento extends CategoriaLancamento{
 //         this.DataInclusao = DataInclusao;
 //    }
     
-    public Lancamento()
-    {
-    }
+    public Lancamento() {}
     
     public Lancamento(String descricao,double valor, String categoria, int tipo)
     {
@@ -79,8 +74,8 @@ public class Lancamento extends CategoriaLancamento{
         this.DataInclusao =  df.format(d).toString();
     }
     
-     public String getCategoriaLancamento() {
-        return getNome();
+    public ArrayList<CategoriaLancamento> getCategoriasLancamento() {
+        return this.categorias;
     }
 
     public void addCategoriaLancamento(String nome) {
