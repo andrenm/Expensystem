@@ -20,8 +20,6 @@ public class CtrlLogin {
         
         windowLogin = new LoginGUI(this);
         windowLogin.setVisible(true);
-        
-        //modelo = new Modelo();
     }
     
     public String ValidaLogin(Usuario user)
@@ -29,12 +27,7 @@ public class CtrlLogin {
         try {
             
             ManipuladorXML xml = new ManipuladorXML();
-            System.out.println(user.getEmail());
-            System.out.println(user.getSenha());
-            login = xml.searchLogin(user.getEmail(), user.getSenha());
-            
-            System.out.println("AQUIII:");
-            System.out.println(login);
+            login = xml.searchLogin(user.getEmail(), new String(user.getSenha()));  
             
             if(login != null) {
                 return "LOGADO";

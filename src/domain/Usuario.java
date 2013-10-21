@@ -4,7 +4,7 @@
  */
 package domain;
 
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  *
@@ -15,8 +15,8 @@ public class Usuario {
     private int id;
     private String email;
     private String nome;
-    private char[] senha;
-    //private List<Lancamento> lancamentos;
+    private char[] senha;    
+    private ArrayList<Lancamento> lancamentos = new ArrayList<Lancamento>();
     
     public Usuario(String email, char[] senha)
     {
@@ -56,7 +56,11 @@ public class Usuario {
         this.id = id;
     }
     
-   // public List<Lancamento> getLancamentos() {
-       //return lancamentos;
-   // }
+    public ArrayList<Lancamento> getLancamentos() {
+        return this.lancamentos;
+    }    
+
+    public void addLancamento(Lancamento lancamento) {
+        this.lancamentos.add(lancamento);
+    }
 }
