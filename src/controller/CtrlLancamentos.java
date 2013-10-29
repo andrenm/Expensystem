@@ -12,6 +12,7 @@ import java.util.ArrayList;
  */
 public class CtrlLancamentos {
     
+ 
     public String AdicionaLancamentos(String nome, String valor, String Categoria, int Tipo)
     {
        CtrlGastos gerLanc = new CtrlGastos();

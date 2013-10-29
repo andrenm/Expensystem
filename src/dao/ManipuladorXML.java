@@ -14,7 +14,7 @@ import com.thoughtworks.xstream.XStream;
 public class ManipuladorXML {   
     
     // diretorio para busca dos arquivos XML
-    public static String PATH_XML = "C:\\Users\\benjamin.psjunior\\Documents\\NetBeansProjects\\Expensystem\\trunk\\src\\dao\\";    
+    public static String PATH_XML = "C:\\Users\\André\\Documents\\NetBeansProjects\\PI\\src\\dao\\";    
     
     public Usuario searchLogin(String email, String senha) {       
         

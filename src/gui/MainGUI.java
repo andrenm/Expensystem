@@ -5,9 +5,9 @@
 package gui;
 
 import controller.CtrlGastos;
+import controller.CtrlLogin;
 import domain.Lancamento;
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import javax.swing.table.DefaultTableModel;
 
@@ -17,12 +17,16 @@ import javax.swing.table.DefaultTableModel;
  */
 public class MainGUI extends javax.swing.JFrame {
 
+    private CtrlLogin login;
+    private CtrlGastos gastos;
+    private CtrlGastos  windowLancamento;
+    
     /**
      * Creates new form MainGUI
      */
-    public MainGUI() {
+    public MainGUI(CtrlLogin c) {
         initComponents();
-        
+        login = c;
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);      
         
         ListaUltimosLancamentos();
@@ -36,13 +40,13 @@ public class MainGUI extends javax.swing.JFrame {
 
     private void ListaUltimosLancamentos()
     {
-        CtrlGastos gerGastos = new CtrlGastos();
+        gastos = new CtrlGastos();
         
         String[] columns = {"Descrição","Valor", "Categoria","Tipo",  "Data"};
         DefaultTableModel model = new DefaultTableModel(columns, 0);
 
         
-        ArrayList<Lancamento> List = gerGastos.listaLancamentos();
+        ArrayList<Lancamento> List = gastos.listaLancamentos();
 
         for(Lancamento item : List)
         {
@@ -63,17 +67,17 @@ public class MainGUI extends javax.swing.JFrame {
     
     private void ConsultaCreditoTotal()
     {
-       CtrlGastos gerGastos = new CtrlGastos();
+        gastos = new CtrlGastos();
 
-        ValorCredito =  gerGastos.listaCreditos();
+        ValorCredito =  gastos.listaCreditos();
         lblValorCredito.setText("R$ " + String.valueOf(ValorCredito));
     }
 
     private void ConsultaDebitoTotal()
     {
-        CtrlGastos gerGastos = new CtrlGastos();
+        gastos = new CtrlGastos();
 
-        ValorDebito =  gerGastos.listaDebitos();
+        ValorDebito =  gastos.listaDebitos();
         lblValorDebito.setText("R$ " + String.valueOf(ValorDebito));
     }
  
@@ -96,8 +100,6 @@ public class MainGUI extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         lblValorTotal = new javax.swing.JLabel();
         lblTituloTotal = new javax.swing.JLabel();
         lblValorDebito = new javax.swing.JLabel();
@@ -125,18 +127,6 @@ public class MainGUI extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("Balanço geral: - MÊS");
-
-        jButton1.setText("Excluir");
-        jButton1.setToolTipText("");
-        jButton1.setName("btnExcluir"); // NOI18N
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        jButton2.setText("Editar");
-        jButton2.setName("btnEditar"); // NOI18N
 
         lblValorTotal.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lblValorTotal.setName("lblValorTotal"); // NOI18N
@@ -187,6 +177,11 @@ public class MainGUI extends javax.swing.JFrame {
         jMenu5.add(jMenuItem1);
 
         jMenuItem2.setText("Consultar lançamentos");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenu5.add(jMenuItem2);
 
         jMenuBar2.add(jMenu5);
@@ -205,29 +200,22 @@ public class MainGUI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addGap(8, 8, 8)
-                        .addComponent(jButton2)
+                        .addComponent(jLabel1)
                         .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 615, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(lblTituloCredito)
+                    .addComponent(lblTituloDebito)
+                    .addComponent(lblTituloTotal)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 615, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(lblTituloCredito)
-                            .addComponent(lblTituloDebito)
-                            .addComponent(lblTituloTotal)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(lblValorCredito, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)
-                                    .addComponent(lblValorDebito, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(lblValorTotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                        .addContainerGap())))
+                        .addGap(10, 10, 10)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblValorCredito, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)
+                            .addComponent(lblValorDebito, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblValorTotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(334, 334, 334)
                 .addComponent(lblTitulo)
@@ -260,74 +248,28 @@ public class MainGUI extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblValorTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addGap(0, 18, Short.MAX_VALUE))
+                .addGap(0, 15, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        NovoLancamento nvLanca = new NovoLancamento();
-        nvLanca.setVisible(true);
+        NovoLancamentoGUI lancamento = new NovoLancamentoGUI();
+        lancamento.setVisible(true);
+        
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
-        DefaultTableModel model = (DefaultTableModel)jTable_ultimosLancamentos.getModel();
-        int tableIndex =  jTable_ultimosLancamentos.getSelectedRow(); 
-        
-        if(model.getRowCount() == 0)
-        {
-          JOptionPane.showMessageDialog(null, "A tabela já esta vazia.");
-          return;
-        }
-       
-        model.removeRow(jTable_ultimosLancamentos.convertRowIndexToModel(tableIndex));        
-        //TODO: Apagar os valores do XML também
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        ConsultaLancamentoGUI consulta = new ConsultaLancamentoGUI();
+        consulta.setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new MainGUI().setVisible(true);
-            }
-        });
-    }
+   
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenu1;
