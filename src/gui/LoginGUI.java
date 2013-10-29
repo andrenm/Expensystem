@@ -145,10 +145,10 @@ public class LoginGUI extends JFrame {
         }
         else
         {
-           CtrlLogin login = new CtrlLogin();
+           //CtrlLogin login = new CtrlLogin();
            try
            {
-                String result = login.ValidaLogin(new Usuario(txtUser.getText(), txtPassword.getPassword()));
+                String result = loginController.ValidaLogin(new Usuario(txtUser.getText(),txtPassword.getPassword()));
 
                 if(result.equals("INCORRETO"))
                 {
@@ -157,12 +157,7 @@ public class LoginGUI extends JFrame {
                 }
                 else
                 {
-                      
-                  this.dispose();
-                  MainGUI main = new MainGUI();
-                  main.setVisible(true);
-
-                  //JOptionPane.showMessageDialog(null,"logado");
+                  loginController.TelaMain();
                 }
            }
            catch(Exception ex)
