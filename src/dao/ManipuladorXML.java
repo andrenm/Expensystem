@@ -16,7 +16,8 @@ import java.util.ArrayList;
 public class ManipuladorXML {   
     
     // diretorio para busca dos arquivos XML
-    public static String PATH_XML = "C:\\Users\\senac2012\\Documents\\src\\dao\\";    
+    public static String PATH_XML = "C:\\Users\\senac2012\\Documents\\PI3SEM\\src\\dao\\"; 
+    public static String XML_MAIN = "expensys.xml";
     
     public Usuario searchLogin(String email, String senha) {       
         
@@ -24,7 +25,7 @@ public class ManipuladorXML {
         ArrayList<Usuario> userList = null;
         
         //get users list
-        userList = returnXML("expensys.xml");
+        userList = returnXML();
         
         if (userList == null)
             return null;
@@ -39,7 +40,7 @@ public class ManipuladorXML {
         return userReturn;
     }
     
-    public boolean createUserXml(String email, char[] senha) {  
+    public Usuario createUserXml(String nome, String email, char[] senha) {  
         
         //init XStrem
     	XStream xstream = new XStream();         
@@ -48,9 +49,10 @@ public class ManipuladorXML {
     	xstream.alias("categoriaLancamento", CategoriaLancamento.class);
         
         //novo usuario    
-        Usuario user = new Usuario(email, senha);     
+        Usuario user = null;
+        user = new Usuario(nome, email, senha);     
         
-        File arquivo = new File(PATH_XML + "expensys.xml");
+        File arquivo = new File(this.PATH_XML + this.XML_MAIN);
         FileOutputStream gravar;
         
         ArrayList xmlExistente = (ArrayList<Usuario>) xstream.fromXML(arquivo);
@@ -66,14 +68,14 @@ public class ManipuladorXML {
             gravar = new FileOutputStream(arquivo);
             gravar.write(xmlNew.getBytes());
             gravar.close();
-            return true;
         } catch (IOException ex) {
             ex.printStackTrace();
-            return false;
         }
+        
+        return user;
     }
     
-    public ArrayList returnXML(String arquivo) {        
+    public ArrayList returnXML() {        
        
     	ArrayList objectList = null;
         
@@ -85,7 +87,7 @@ public class ManipuladorXML {
     	
     	try {
             
-            BufferedReader ler = new BufferedReader(new FileReader(PATH_XML + arquivo));             
+            BufferedReader ler = new BufferedReader(new FileReader(PATH_XML + this.XML_MAIN));             
             objectList = (ArrayList<Usuario>) xstream.fromXML(ler);
             
             //free memory

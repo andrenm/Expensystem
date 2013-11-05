@@ -48,6 +48,8 @@ public class NovoUsuarioGUI extends JFrame {
         lblEmail = new javax.swing.JLabel();
         lblPasswordName = new javax.swing.JLabel();
         txtPassword = new javax.swing.JPasswordField();
+        txtNome = new javax.swing.JTextField();
+        lblNome = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -66,15 +68,15 @@ public class NovoUsuarioGUI extends JFrame {
             }
         });
 
-        lblTitulo.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        lblTitulo.setForeground(new java.awt.Color(102, 102, 255));
+        lblTitulo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblTitulo.setForeground(new java.awt.Color(255, 51, 0));
         lblTitulo.setText("Novo Usuário");
 
-        lblEmail.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblEmail.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblEmail.setForeground(new java.awt.Color(51, 51, 51));
         lblEmail.setText("Email:");
 
-        lblPasswordName.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblPasswordName.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblPasswordName.setForeground(new java.awt.Color(51, 51, 51));
         lblPasswordName.setText("Senha:");
 
@@ -85,45 +87,54 @@ public class NovoUsuarioGUI extends JFrame {
             }
         });
 
+        lblNome.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblNome.setForeground(new java.awt.Color(51, 51, 51));
+        lblNome.setText("Nome:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblTitulo)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(60, 60, 60)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblEmail)
-                            .addComponent(lblPasswordName))
-                        .addGap(40, 40, 40)
+                            .addComponent(lblPasswordName)
+                            .addComponent(lblEmail, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblNome, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnNovoRegistro)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(txtPassword, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
-                                .addComponent(txtEmail)))))
-                .addContainerGap(99, Short.MAX_VALUE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtEmail)
+                                .addComponent(txtNome)
+                                .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(lblTitulo)))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap(17, Short.MAX_VALUE)
                 .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(4, 4, 4)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblEmail)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblPasswordName)
-                        .addGap(0, 8, Short.MAX_VALUE))
-                    .addComponent(txtPassword))
-                .addGap(24, 24, 24)
-                .addComponent(btnNovoRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblNome))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblEmail))
+                .addGap(14, 14, 14)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblPasswordName)
+                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
+                .addComponent(btnNovoRegistro)
+                .addGap(49, 49, 49))
         );
 
         pack();
@@ -138,19 +149,20 @@ public class NovoUsuarioGUI extends JFrame {
     }//GEN-LAST:event_txtPasswordActionPerformed
 
     private void btnNovoRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoRegistroActionPerformed
-        if(txtEmail.getText().isEmpty() || txtPassword.getPassword().length == 0) {
-            JOptionPane.showMessageDialog(null, "Favor preencher os campos Email e Senha");
+        if(txtEmail.getText().isEmpty() || txtPassword.getPassword().length == 0 ||
+                txtNome.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Favor preencher todos os campos!");
         } else {
            try {               
-            boolean result = loginController.criarUsuario(new Usuario(txtEmail.getText(), txtPassword.getPassword()));
-
-            if(!result) {
+                boolean result = loginController.criarUsuario(new Usuario(txtNome.getText(), txtEmail.getText(), txtPassword.getPassword()));
                 this.dispose();
-                JOptionPane.showMessageDialog(null, "Os campos Usuário e/ou Senha estão incorretos");
-            } else {
-                loginController.TelaMain();
-                this.dispose();
-            }
+                
+                if(!result) {                    
+                    JOptionPane.showMessageDialog(null, "Os campos Usuário e/ou Senha estão incorretos");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Olá " + loginController.getCurrentUser().getNome() + ", seja bem-vindo!"); 
+                    loginController.showTelaMain();
+                }
            } catch(Exception ex) {
              JOptionPane.showMessageDialog(null, "O sistema encontrou um erro e não cadastrar o usuário.");
            }
@@ -161,9 +173,11 @@ public class NovoUsuarioGUI extends JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnNovoRegistro;
     private javax.swing.JLabel lblEmail;
+    private javax.swing.JLabel lblNome;
     private javax.swing.JLabel lblPasswordName;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtNome;
     private javax.swing.JPasswordField txtPassword;
     // End of variables declaration//GEN-END:variables
 }
