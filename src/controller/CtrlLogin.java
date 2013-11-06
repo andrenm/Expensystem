@@ -1,7 +1,5 @@
-/*alterado*/
 package controller;
 
-//vendor's packages
 import gui.*;
 import domain.Usuario;
 import dao.ManipuladorXML;
@@ -14,38 +12,61 @@ public class CtrlLogin {
         
     private LoginGUI windowLogin;
     private MainGUI windowMain;
-    //private Modelo modelo;
-    private Usuario login;
+    private NovoUsuarioGUI windowNovoUsuario;
+    
+    private Usuario currentUser;
     
     public CtrlLogin() {
         
+        /* init windows */
         windowLogin = new LoginGUI(this);
+        windowMain = new MainGUI(this);
+        windowNovoUsuario = new NovoUsuarioGUI(this);
+        
         windowLogin.setVisible(true);
     }
     
-    public void TelaMain(){
-        //windowLogin.setVisible(false);
+    public void showTelaMain() {        
         windowLogin.dispose();
-        //windowLogin = null;
-        windowMain = new MainGUI(this);
+        windowNovoUsuario.dispose();        
         windowMain.setVisible(true);
     }
     
-    public String ValidaLogin(Usuario user)
-    {   
-        try {
-            
+    public void showTelaNovoUsuario() {        
+        //windowLogin.dispose();
+        windowNovoUsuario.setVisible(true);        
+    }
+    
+    public boolean validarLogin(Usuario user) {   
+        try {            
             ManipuladorXML xml = new ManipuladorXML();
-            login = xml.searchLogin(user.getEmail(), new String(user.getSenha()));  
-            
-            if(login != null) {
-                return "LOGADO";
-            } else {
-                return "INCORRETO";
-            }
-            
+            currentUser = xml.searchLogin(user.getEmail(), new String(user.getSenha()));  
+            return this.hasCurrentUser();            
         } catch(Exception ex) {
             throw ex;
+        }
+    }
+    
+    public boolean criarUsuario(Usuario user) {   
+        try {            
+            ManipuladorXML xml = new ManipuladorXML();
+            currentUser = xml.createUserXml(user.getNome(), user.getEmail(), user.getSenha());             
+            return this.hasCurrentUser();          
+        } catch(Exception ex) {
+            throw ex;
+        }     
+    }
+    
+    public Usuario getCurrentUser() {
+        return this.currentUser;
+    }
+    
+    private boolean hasCurrentUser() {
+        if (this.currentUser != null) {
+            //System.out.println("ID:  " + this.currentUser.getId());
+            return true;
+        } else {
+            return false;
         }
     }
 }

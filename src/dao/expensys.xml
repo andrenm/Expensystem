@@ -2,6 +2,7 @@
   <usuario>
     <id>1</id>
     <email>ben</email>
+    <nome>benjamin</nome>
     <senha>123</senha>
     <lancamentos>
       <lancamento>
@@ -22,5 +23,33 @@
         </categorias>
       </lancamento>
     </lancamentos>
+  </usuario>
+  <usuario>
+    <id>2</id>
+    <email>andre@gmail.com</email>
+    <nome>andre mailho</nome>
+    <senha>12345</senha>
+    <lancamentos/>
+  </usuario>
+  <usuario>
+    <id>3</id>
+    <email>marcela@dds.com</email>
+    <nome>marcela reis</nome>
+    <senha>12345</senha>
+    <lancamentos/>
+  </usuario>
+  <usuario>
+    <id>4</id>
+    <email>dsads</email>
+    <nome>aanh</nome>
+    <senha>2123</senha>
+    <lancamentos/>
+  </usuario>
+  <usuario>
+    <id>5</id>
+    <email>loaina@hotmai.com</email>
+    <nome>loiane Groiner</nome>
+    <senha>1234ree5r345543</senha>
+    <lancamentos/>
   </usuario>
 </list>

@@ -7,7 +7,7 @@
 package expensys;
 
 import controller.CtrlLogin;
-import dao.ManipuladorXML;
+import preloader.Progress;
 
 /**
  *
@@ -20,6 +20,11 @@ public class Expensys {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        CtrlLogin c = new CtrlLogin();
+        Progress frame = new Progress();
+        frame.pack();
+        frame.setVisible(true);
+        frame.iterate();
+        
+        //CtrlLogin c = new CtrlLogin();
     }
 }
