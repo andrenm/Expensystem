@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package gui;
 
 import controller.CtrlGastos;
@@ -17,47 +13,45 @@ import javax.swing.table.DefaultTableModel;
  */
 public class MainGUI extends javax.swing.JFrame {
 
-    private CtrlLogin login;
+    private CtrlLogin loginController;
     private CtrlGastos gastos;
-    private CtrlGastos  windowLancamento;
+    private CtrlGastos windowLancamento;
+    
+    private double ValorCredito = 0;
+    private double ValorDebito = 0;
     
     /**
      * Creates new form MainGUI
      */
     public MainGUI(CtrlLogin c) {
         initComponents();
-        login = c;
+        loginController = c;
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);      
         
-        ListaUltimosLancamentos();
+        listaUltimosLancamentos();
         ConsultaCreditoTotal();
         ConsultaDebitoTotal();
         CalculaTotal();
     }
-    
-    private double ValorCredito = 0;
-    private double  ValorDebito = 0;
 
-    private void ListaUltimosLancamentos()
-    {
+    private void listaUltimosLancamentos() {
         gastos = new CtrlGastos();
         
-        String[] columns = {"Descrição","Valor", "Categoria","Tipo",  "Data"};
+        String[] columns = {"Descrição", "Valor", "Categoria", "Tipo", "Data"};
         DefaultTableModel model = new DefaultTableModel(columns, 0);
-
         
         ArrayList<Lancamento> List = gastos.listaLancamentos();
 
-        for(Lancamento item : List)
-        {
+        for(Lancamento itemLancamento : List) {
             Object[] obj  = new Object[5];
-
-            obj[0] = item.getDescricao();
-            obj[1] = "R$ " + item.getValor();
-            obj[2] = item.getNome();     
-            obj[3] = (item.getTipo() == 0 ? "Avulso" : "Fixo"); 
-            obj[4] = item.getDataInclusao();
+            obj[0] = itemLancamento.getDescricao();
+            obj[1] = "R$ " + itemLancamento.getValor();
+            //somente uma categoria para cada lancamento
+            obj[2] = itemLancamento.getCategoriaLancamento().get(0).getNome();     
+            obj[3] = (itemLancamento.getTipo() == 0 ? "Avulso" : "Fixo"); 
+            obj[4] = itemLancamento.getDataInclusao();
             
+            //row added
             model.addRow(obj);
         }
         

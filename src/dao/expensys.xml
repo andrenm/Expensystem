@@ -6,21 +6,15 @@
     <senha>123</senha>
     <lancamentos>
       <lancamento>
-        <descricao>mercado do mes</descricao>
+        <descricao>compra do mes</descricao>
         <valor>250.96</valor>
         <status>1</status>
-        <tipo>2</tipo>
-        <categorias>
+        <tipo>0</tipo>
+        <categoria>
           <categoriaLancamento>
             <nome>cartao</nome>
           </categoriaLancamento>
-          <categoriaLancamento>
-            <nome>divida</nome>
-          </categoriaLancamento>
-          <categoriaLancamento>
-            <nome>compras</nome>
-          </categoriaLancamento>
-        </categorias>
+        </categoria>
       </lancamento>
     </lancamentos>
   </usuario>

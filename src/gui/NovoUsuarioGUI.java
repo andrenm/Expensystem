@@ -3,6 +3,7 @@ package gui;
 
 //vendor's packages
 import controller.CtrlLogin;
+import controller.CtrlSession;
 import domain.Usuario;
         
 import javax.swing.JFrame;
@@ -160,7 +161,7 @@ public class NovoUsuarioGUI extends JFrame {
                 if(!result) {                    
                     JOptionPane.showMessageDialog(null, "Os campos Usuário e/ou Senha estão incorretos");
                 } else {
-                    JOptionPane.showMessageDialog(null, "Olá " + loginController.getCurrentUser().getNome() + ", seja bem-vindo!"); 
+                    JOptionPane.showMessageDialog(null, "Olá " + CtrlSession.getCurrentUser().getNome() + ", seja bem-vindo!"); 
                     loginController.showTelaMain();
                 }
            } catch(Exception ex) {

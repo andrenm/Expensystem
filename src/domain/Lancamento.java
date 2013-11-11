@@ -16,7 +16,21 @@ public class Lancamento extends CategoriaLancamento{
     private int status;
     private int tipo;
     private String DataInclusao;
-    private ArrayList<CategoriaLancamento> categorias = new ArrayList<CategoriaLancamento>();
+    private ArrayList<CategoriaLancamento> categoria = new ArrayList<CategoriaLancamento>();
+    
+    public Lancamento() {}
+    
+    public Lancamento(String descricao,double valor, String categoria, int tipo) {
+        Date d = new Date();
+                
+        this.descricao = descricao;
+        this.valor = valor;
+        setNome(categoria);
+        this.tipo = tipo;
+        
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        this.DataInclusao =  df.format(d).toString();
+    }
 
     public String getDescricao() {
         return descricao;
@@ -29,13 +43,15 @@ public class Lancamento extends CategoriaLancamento{
     public double getValor() {
         return valor;
     }
+    
     public void setValor(double valor) {
         this.valor = valor;
     }
-
+    
     public int getStatus() {
         return status;
     }
+    
     public void setStatus(int status) {
         this.status = status;
     }
@@ -43,12 +59,12 @@ public class Lancamento extends CategoriaLancamento{
     public int getTipo() {
         return tipo;
     }
+    
     public void setTipo(int tipo) {
         this.tipo = tipo;
     }
     
-    public String getDataInclusao()
-     {
+    public String getDataInclusao() {
          return DataInclusao;
     }
 //    public void setDataInclusao(Date DataInclusao) {
@@ -59,27 +75,12 @@ public class Lancamento extends CategoriaLancamento{
 //         this.DataInclusao = DataInclusao;
 //    }
     
-    public Lancamento() {}
-    
-    public Lancamento(String descricao,double valor, String categoria, int tipo)
-    {
-        Date d = new Date();
-                
-        this.descricao = descricao;
-        this.valor = valor;
-        setNome(categoria);
-        this.tipo = tipo;
-        
-        DateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-        this.DataInclusao =  df.format(d).toString();
-    }
-    
-    public ArrayList<CategoriaLancamento> getCategoriasLancamento() {
-        return this.categorias;
+    public ArrayList<CategoriaLancamento> getCategoriaLancamento() {
+        return this.categoria;
     }
 
-    public void addCategoriaLancamento(String nome) {
+    public void setCategoriaLancamento(String nome) {
         CategoriaLancamento cl = new CategoriaLancamento(nome);
-        this.categorias.add(cl);
+        this.categoria.add(cl);
     }
 }

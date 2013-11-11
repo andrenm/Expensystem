@@ -3,6 +3,7 @@ package gui;
 
 //vendor's packages
 import controller.CtrlLogin;
+import controller.CtrlSession;
 import domain.Usuario;
         
 import javax.swing.JFrame;
@@ -79,7 +80,7 @@ public class LoginGUI extends JFrame {
 
         lblUserName.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblUserName.setForeground(new java.awt.Color(51, 51, 51));
-        lblUserName.setText("Usuário:");
+        lblUserName.setText("Email:");
 
         lblPasswordName.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblPasswordName.setForeground(new java.awt.Color(51, 51, 51));
@@ -98,7 +99,7 @@ public class LoginGUI extends JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblTitulo)
                     .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblUserName)
                     .addComponent(lblPasswordName))
@@ -155,7 +156,7 @@ public class LoginGUI extends JFrame {
                     //this.dispose();
                     JOptionPane.showMessageDialog(null, "Os campos Usuário e/ou Senha estão incorretos");
                 } else {
-                    JOptionPane.showMessageDialog(null, "Olá " + loginController.getCurrentUser().getNome() + ", seja bem-vindo!");                          
+                    JOptionPane.showMessageDialog(null, "Olá " + CtrlSession.getCurrentUser().getNome() + ", seja bem-vindo!");                          
                     loginController.showTelaMain();
                 }
            } catch(Exception ex) {               
