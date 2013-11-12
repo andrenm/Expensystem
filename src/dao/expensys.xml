@@ -16,6 +16,28 @@
           </categoriaLancamento>
         </categoria>
       </lancamento>
+      <lancamento>
+        <descricao>corte de cabelo</descricao>
+        <valor>20.00</valor>
+        <status>1</status>
+        <tipo>0</tipo>
+        <categoria>
+          <categoriaLancamento>
+            <nome>beleza</nome>
+          </categoriaLancamento>
+        </categoria>
+      </lancamento>
+      <lancamento>
+        <descricao>conta de telefone</descricao>
+        <valor>110.00</valor>
+        <status>1</status>
+        <tipo>1</tipo>
+        <categoria>
+          <categoriaLancamento>
+            <nome>casa</nome>
+          </categoriaLancamento>
+        </categoria>
+      </lancamento>
     </lancamentos>
   </usuario>
   <usuario>
@@ -23,7 +45,19 @@
     <email>andre@gmail.com</email>
     <nome>andre mailho</nome>
     <senha>12345</senha>
-    <lancamentos/>
+    <lancamentos>    
+      <lancamento>
+        <descricao>reparo do pneu do carro</descricao>
+        <valor>330.46</valor>
+        <status>1</status>
+        <tipo>1</tipo>
+        <categoria>
+          <categoriaLancamento>
+            <nome>cartao</nome>
+          </categoriaLancamento>
+        </categoria>
+      </lancamento>
+    </lancamentos>
   </usuario>
   <usuario>
     <id>3</id>

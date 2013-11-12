@@ -4,14 +4,14 @@ import controller.CtrlGastos;
 import controller.CtrlLogin;
 import domain.Lancamento;
 import java.util.ArrayList;
-import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.JFrame;
 
 /**
  *
  * @author André
  */
-public class MainGUI extends javax.swing.JFrame {
+public class MainGUI extends JFrame {
 
     private CtrlLogin loginController;
     private CtrlGastos gastos;
@@ -23,9 +23,9 @@ public class MainGUI extends javax.swing.JFrame {
     /**
      * Creates new form MainGUI
      */
-    public MainGUI(CtrlLogin c) {
+    public MainGUI(CtrlLogin control) {
         initComponents();
-        loginController = c;
+        this.loginController = control;
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);      
         
         listaUltimosLancamentos();
@@ -42,41 +42,38 @@ public class MainGUI extends javax.swing.JFrame {
         
         ArrayList<Lancamento> List = gastos.listaLancamentos();
 
-        for(Lancamento itemLancamento : List) {
-            Object[] obj  = new Object[5];
-            obj[0] = itemLancamento.getDescricao();
-            obj[1] = "R$ " + itemLancamento.getValor();
+        for (Lancamento itemLancamento : List) {
+            Object[] rowLancamento  = new Object[5];
+            rowLancamento[0] = itemLancamento.getDescricao();
+            rowLancamento[1] = "R$ " + itemLancamento.getValor();
             //somente uma categoria para cada lancamento
-            obj[2] = itemLancamento.getCategoriaLancamento().get(0).getNome();     
-            obj[3] = (itemLancamento.getTipo() == 0 ? "Avulso" : "Fixo"); 
-            obj[4] = itemLancamento.getDataInclusao();
+            rowLancamento[2] = itemLancamento.getCategoriaLancamento().get(0).getNome();     
+            rowLancamento[3] = (itemLancamento.getTipo() == 0 ? "Avulso" : "Fixo"); 
+            rowLancamento[4] = itemLancamento.getDataInclusao();
             
             //row added
-            model.addRow(obj);
+            model.addRow(rowLancamento);
         }
-        
-       jTable_ultimosLancamentos.setModel(model);
        
+       //add in panel
+       jTable_ultimosLancamentos.setModel(model);       
     }
     
-    private void ConsultaCreditoTotal()
-    {
+    private void ConsultaCreditoTotal() {
         gastos = new CtrlGastos();
 
-        ValorCredito =  gastos.listaCreditos();
+        ValorCredito = gastos.getTotalCredito();
         lblValorCredito.setText("R$ " + String.valueOf(ValorCredito));
     }
 
-    private void ConsultaDebitoTotal()
-    {
+    private void ConsultaDebitoTotal() {
         gastos = new CtrlGastos();
 
-        ValorDebito =  gastos.listaDebitos();
+        ValorDebito =  gastos.getTotalDebito();
         lblValorDebito.setText("R$ " + String.valueOf(ValorDebito));
     }
  
-    private void CalculaTotal()
-    {
+    private void CalculaTotal() {
         double Total = Math.round(ValorCredito - ValorDebito);
         lblValorTotal.setText("R$ " + String.valueOf(Total));
     }

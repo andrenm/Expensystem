@@ -1,7 +1,5 @@
-
 package gui;
 
-//vendor's packages
 import controller.CtrlLogin;
 import controller.CtrlSession;
 import domain.Usuario;
@@ -21,16 +19,12 @@ public class NovoUsuarioGUI extends JFrame {
      * Creates new form JFramePrincipal
      */
     
-    public NovoUsuarioGUI()
-    {
-
-    }
+    public NovoUsuarioGUI() {}
     
     public NovoUsuarioGUI(CtrlLogin control) {
         
         initComponents();
-        this.loginController = control;
-        
+        this.loginController = control;        
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 

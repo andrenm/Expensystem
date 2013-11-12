@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package controller;
 
 import domain.CategoriaLancamento;
@@ -10,7 +6,7 @@ import java.util.ArrayList;
  *
  * @author André
  */
-public class CtrlCategoria extends CategoriaLancamento {
+public class CtrlCategoria {
     
     public ArrayList<String> listaCategorias()
     {

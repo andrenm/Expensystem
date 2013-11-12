@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class ManipuladorXML {   
     
     // diretorio para busca dos arquivos XML
-    public static String PATH_XML = "C:\\Users\\benjamin.psjunior\\Documents\\NetBeansProjects\\PI\\src\\dao\\"; 
+    public static String PATH_XML = "C:\\Users\\senac2012\\Documents\\NetBeansProjects\\PI\\src\\dao\\"; 
     public static String XML_MAIN = "expensys.xml";
     
     public Usuario searchLogin(String email, String senha) {       
