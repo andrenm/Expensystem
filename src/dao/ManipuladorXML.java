@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class ManipuladorXML {   
     
     // diretorio para busca dos arquivos XML
-    public static String PATH_XML = "C:\\Users\\senac2012\\Documents\\PI3SEM\\src\\dao\\"; 
+    public static String PATH_XML = "C:\\Users\\senac2012\\Documents\\NetBeansProjects\\PI\\src\\dao\\"; 
     public static String XML_MAIN = "expensys.xml";
     
     public Usuario searchLogin(String email, String senha) {       
@@ -30,9 +30,9 @@ public class ManipuladorXML {
         if (userList == null)
             return null;
         
-        for (Usuario userL : userList) {       
-            if (userL.getEmail().equals(email) && new String(userL.getSenha()).equals(senha)) {                     
-                userReturn = userL;                
+        for (Usuario user : userList) {       
+            if (user.getEmail().equals(email) && new String(user.getSenha()).equals(senha)) {                     
+                userReturn = user;                
                 break;
             }
         }

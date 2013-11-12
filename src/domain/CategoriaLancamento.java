@@ -10,7 +10,13 @@ package domain;
  */
 public class CategoriaLancamento {
     
-    private String nome;
+    private String nome;    
+
+    public CategoriaLancamento() {}
+
+    public CategoriaLancamento(String nome) {
+        this.nome = nome;
+    }
 
     public String getNome() {
         return nome;
@@ -19,12 +25,4 @@ public class CategoriaLancamento {
     public void setNome(String nome) {
         this.nome = nome;
     }
-
-    public CategoriaLancamento() {
-    }
-
-    public CategoriaLancamento(String nome) {
-        this.nome = nome;
-    }
-
 }

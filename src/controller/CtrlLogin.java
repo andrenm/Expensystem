@@ -14,15 +14,10 @@ public class CtrlLogin {
     private MainGUI windowMain;
     private NovoUsuarioGUI windowNovoUsuario;
     
-    private Usuario currentUser;
-    
-    public CtrlLogin() {
-        
+    public CtrlLogin() {        
         /* init windows */
         windowLogin = new LoginGUI(this);
-        windowMain = new MainGUI(this);
-        windowNovoUsuario = new NovoUsuarioGUI(this);
-        
+        windowNovoUsuario = new NovoUsuarioGUI(this);        
         windowLogin.setVisible(true);
     }
     
@@ -40,8 +35,8 @@ public class CtrlLogin {
     public boolean validarLogin(Usuario user) {   
         try {            
             ManipuladorXML xml = new ManipuladorXML();
-            currentUser = xml.searchLogin(user.getEmail(), new String(user.getSenha()));  
-            return this.hasCurrentUser();            
+            CtrlSession.setCurrentUser(xml.searchLogin(user.getEmail(), new String(user.getSenha())));  
+            return this.hasUserLogged();            
         } catch(Exception ex) {
             throw ex;
         }
@@ -50,20 +45,17 @@ public class CtrlLogin {
     public boolean criarUsuario(Usuario user) {   
         try {            
             ManipuladorXML xml = new ManipuladorXML();
-            currentUser = xml.createUserXml(user.getNome(), user.getEmail(), user.getSenha());             
-            return this.hasCurrentUser();          
+            CtrlSession.setCurrentUser(xml.createUserXml(user.getNome(), user.getEmail(), user.getSenha()));             
+            return this.hasUserLogged();          
         } catch(Exception ex) {
             throw ex;
         }     
     }
     
-    public Usuario getCurrentUser() {
-        return this.currentUser;
-    }
-    
-    private boolean hasCurrentUser() {
-        if (this.currentUser != null) {
-            //System.out.println("ID:  " + this.currentUser.getId());
+    private boolean hasUserLogged() {
+        if (CtrlSession.getCurrentUser() != null) {
+            //System.out.println("ID:  " + this.currentUser.getId());            
+            windowMain = new MainGUI(this);
             return true;
         } else {
             return false;
